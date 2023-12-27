@@ -1,0 +1,94 @@
+@Metadata.layer: #CORE
+// 1 #CUSTOMER
+// 2 #PARTNER
+// 3 #LOCALIZATION
+// 4 #INDUSTRY
+// 5 #CORE
+
+//INICIO HEADER INFO
+//@Search.searchable: true
+@UI:{ headerInfo: {   typeName: 'Item',
+                      typeNamePlural: 'Items',
+                      title: {    type: #STANDARD,                                            
+                                  value: 'IDITEM' } }
+    , 
+      presentationVariant: [{ sortOrder: [{ by: 'ID' ,
+                                            direction: #ASC }, 
+                                            { by: 'IDITEM' ,
+                                            direction: #ASC }],
+      visualizations: [{ type: #AS_LINEITEM }] }]
+ }
+//FIN HEADER INFO
+
+annotate view zc_items_8778 with
+{
+
+//INICIO FACET
+ @UI.facet: [
+        {
+          id:       'Items',
+          purpose:  #STANDARD,
+          type:     #IDENTIFICATION_REFERENCE,
+          label:    'Items',
+          position: 10 }
+      ]
+//FIN FACET
+ 
+   @UI: {
+          lineItem: [ { position: 10 , importance: #HIGH, label: 'id' } ]
+    , identification:[ { position: 10, label: 'id' } ]
+   , textArrangement: #TEXT_ONLY 
+        }
+     ID; 
+   @UI: {
+          lineItem: [ { position: 20, label: 'IDItem' } ]
+          }
+     IDITEM; 
+   @UI: {
+          lineItem: [ { position: 30, label: 'Name' } ]
+          }
+     NAME; 
+   @UI: {
+          lineItem: [ { position: 40, label: 'Description' } ]
+          }
+     DESCRIPTION; 
+   @UI: {
+          lineItem: [ { position: 50, label: 'Release Date' } ]
+          }
+     RELEASEDATE; 
+   @UI: {
+          lineItem: [ { position: 60, label: 'Discontinued Date' } ]
+          }
+     DISCONTINUEDDATE ; 
+   @UI: {
+          lineItem: [ { position: 70, label: 'Price' } ]
+          }
+     PRICE ; 
+   @UI: {
+          lineItem: [ { position: 80, label: 'Height' } ]
+          }
+     HEIGHT ; 
+   @UI: {
+          lineItem: [ { position: 90, label: 'Width' } ]
+          }
+     WIDTH ; 
+   @UI: {
+          lineItem: [ { position: 100, label: 'Depth' } ]
+          }
+     DEPTH ; 
+   @UI: {
+          lineItem: [ { position: 110, label: 'Quantity' } ]
+          }
+     QUANTITY; 
+   @UI: {
+          lineItem: [ { position: 120, label: 'Unit of Measure' } ]
+          }
+     UNITOFMEASURE; 
+     
+    @UI.hidden: true
+    LocalLastChangedAt;
+
+
+
+ 
+}

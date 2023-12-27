@@ -1,0 +1,80 @@
+managed implementation in class zbp_r_header_8778 unique;
+strict ( 2 );
+with draft;
+
+define behavior for zr_header_8778 alias Header
+persistent table zheader_8778
+draft table zheader_8778_d
+lock master
+total etag LastChangedAt
+authorization master ( global, instance )
+etag master LocalLastChangedAt
+{
+create ( precheck );
+  update ( precheck );
+  delete;
+ association _Items
+  {
+    create ( features : instance,
+    authorization : update );
+    with draft;
+  }
+  field ( readonly ) id;
+  field ( mandatory ) email;
+
+  draft action Resume with additional implementation;
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+
+  draft determine action Prepare
+  {
+
+  }
+
+  mapping for zheader_8778
+    {
+      ID           = id;
+      EMAIL        = email;
+      FIRSTNAME    = firstname;
+      LASTNAME     = lastname;
+      COUNTRY      = country;
+      CREATEON     = createon;
+      DELIVERYDATE = deliverydate;
+      ORDERSTATUS  = orderstatus;
+      IMAGEURL     = imageurl;
+    }
+}
+
+define behavior for zr_items_8778 alias _Items
+persistent table zitems_8778
+draft table zitems_8778_d
+lock dependent by _Header
+authorization dependent by _Header
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( readonly ) ID, IDitem;
+  field ( mandatory ) Name, Quantity;
+
+
+  association _Header { with draft; }
+
+
+  mapping for zitems_8778
+    {
+      ID               = id;
+      IDITEM           = iditem;
+      NAME             = name;
+      DESCRIPTION      = description;
+      RELEASEDATE      = releasedate;
+      DISCONTINUEDDATE = discontinueddate;
+      PRICE            = price;
+      HEIGHT           = height;
+      WIDTH            = width;
+      DEPTH            = depth;
+      QUANTITY         = quantity;
+      UNITOFMEASURE    = unitofmeasure;
+    }
+}

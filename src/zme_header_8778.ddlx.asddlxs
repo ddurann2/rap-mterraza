@@ -1,0 +1,87 @@
+@Metadata.layer: #CORE
+// 1 #CUSTOMER
+// 2 #PARTNER
+// 3 #LOCALIZATION
+// 4 #INDUSTRY
+// 5 #CORE
+
+//INICIO HEADER INFO
+@UI:{ headerInfo: 
+        { typeName: 'Header',
+                    typeNamePlural: 'Headers',
+                    title: { type: #STANDARD, 
+                             label: 'Header', 
+                             value: 'ID' } },
+        presentationVariant: [{ sortOrder: [{ by: 'ID', direction: #ASC }],
+                                visualizations: [{ type: #AS_LINEITEM }] 
+                             }]
+}
+//FIN HEADER INFO
+
+annotate view zc_header_8778 with
+{
+//INICIO FACET      
+ @UI.facet: [
+        {
+          id:       'Header',
+          purpose:  #STANDARD,
+          type:     #IDENTIFICATION_REFERENCE,
+          label:    'Header',
+          position: 10 }, 
+        { id:       'Items',
+          purpose:  #STANDARD,
+          type:     #LINEITEM_REFERENCE,
+          label:    'Items',
+          position: 20,
+          targetElement: '_Items'
+        }
+      ]
+//FIN FACET      
+      
+  @UI: {
+          lineItem: [ { position: 10 , importance: #HIGH, label: 'ID' } ],
+           identification: [{ position: 10,
+                            label: 'ID' } ]
+        }       
+ @UI.selectionField: [ { position: 10} ] 
+ @Search.defaultSearchElement: true 
+
+     ID; 
+   @UI: {
+          lineItem: [ { position: 20, label: 'Email' } ]
+          }
+ @UI.selectionField: [ { position: 20} ] 
+ @Search.defaultSearchElement: true 
+     EMAIL ; 
+   @UI: {
+          lineItem: [ { position: 30, label: 'First Name' } ]
+          }
+     FIRSTNAME; 
+   @UI: {
+          lineItem: [ { position: 40, label: 'Last Name' } ]
+          }
+     LASTNAME; 
+   @UI: {
+          lineItem: [ { position: 50, label: 'Country' } ]
+          }
+     COUNTRY; 
+   @UI: {
+          lineItem: [ { position: 60, label: 'Create on' } ]
+          }
+     CREATEON; 
+   @UI: {
+          lineItem: [ { position: 70, label: 'Delivery Date' } ]
+          }
+     DELIVERYDATE; 
+   @UI: {
+          lineItem: [ { position: 80, label: 'Order Status' } ]
+          }
+     ORDERSTATUS; 
+   @UI: {
+          lineItem: [ { position: 90, label: 'Imageurl' } ]
+          }
+     IMAGEURL; 
+    
+    @UI.hidden: true
+    LocalLastChangedAt;
+}
